@@ -1,9 +1,9 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+html {
+    box-sizing: border-box;
 }
 
-#greeting-container {
-  margin-top: 20px;
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
 }
