@@ -8,7 +8,7 @@ public final class Event{
 
     private String type;
     private String details;
-    private int price;
+    private float price;
 
     public Event(String type, String details, int price){
         setType(type);
@@ -36,7 +36,7 @@ public final class Event{
         return this.details;
     }
 
-    public int getPrice(){
+    public float getPrice(){
         return this.price;
     }
 }
