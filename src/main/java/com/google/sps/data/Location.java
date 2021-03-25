@@ -9,33 +9,33 @@ public final class Location{
     private String state;
     private int zipCode;
 
-    public  Location(String street, String state, int zipCode){
+    public  Location(String street, String state, int zipCode) {
         setState(state);
         setStreet(street);
         setZipCode(zipCode);
     }
 
-    public void setStreet(String street){
+    public void setStreet(String street) {
         this.street = street;
     }
 
-    public void setState(String state){
+    public void setState(String state) {
         this.state = state;
     }
 
-    public void setZipCode(int zipCode){
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
-    public String getStreet(){
+    public String getStreet() {
         return this.street;
     }
 
-    public String getState(){
+    public String getState() {
         return this.state;
     }
 
-    public int getZipCode(){
+    public int getZipCode() {
         return this.zipCode;
     }
 }
