@@ -38,7 +38,7 @@
       <artifactId>jetty-annotations</artifactId>
       <version>${jetty.version}</version>
     </dependency>
-
+    
     <!-- Datastore -->
     <dependency>
         <groupId>com.google.cloud</groupId>
@@ -52,7 +52,6 @@
         <artifactId>jsoup</artifactId>
         <version>1.8.3</version>
     </dependency>
-
   </dependencies>
 
   <build>
