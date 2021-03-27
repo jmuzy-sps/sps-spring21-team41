@@ -1,0 +1,1 @@
+// This Servlet will retrieve events which will eventually be listed on home page.
