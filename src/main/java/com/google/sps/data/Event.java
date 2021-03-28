@@ -11,7 +11,7 @@ public final class Event{
     private String type;
     private String details;
     private float price;
-    private Location address;
+    public Location address;
 
     public Event(String type, String details, int price, Location address) {
         setType(type);
@@ -46,20 +46,5 @@ public final class Event{
 
     public float getPrice() {
         return this.price;
-    }
-
-    public String getAddress() {
-        return "" + address.getStreet() + ", " + address.getZipCode() + " " + address.getState();
-    }
-
-    public String getAddressStreet(){
-        return address.getStreet();
-    }
-
-    public String getAddressState(){
-        return address.getStreet();
-    }
-    public int getAddressZipCode(){
-        return address.getZipCode();
     }
 }
