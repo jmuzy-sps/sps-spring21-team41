@@ -29,8 +29,8 @@ public class ListEventDataServlet extends HttpServlet {
 
     List<Form> forms = new ArrayList<>();
     while (results.hasNext()) {
-      Entity entity = results.next();
-
+        Entity entity = results.next();
+        
         long id = entity.getKey().getId();      
         String type = entity.getString("type");
         long date = entity.getLong("date");

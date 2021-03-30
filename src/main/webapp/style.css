@@ -8,7 +8,12 @@ html {
     padding: 0;
 }
 .center {
+  padding:10px;
   text-align: center;
-  padding:10px
-  
+}
+.currencyinput {
+    border: 1px inset #ccc;
+}
+.currencyinput input {
+    border: 0;
 }
