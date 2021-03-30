@@ -7,9 +7,9 @@ public final class Location{
 
     private String street;
     private String state;
-    private int zipCode;
+    private String zipCode;
 
-    public  Location(String street, String state, int zipCode) {
+    public  Location(String street, String state, String zipCode) {
         setState(state);
         setStreet(street);
         setZipCode(zipCode);
@@ -23,7 +23,7 @@ public final class Location{
         this.state = state;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -35,7 +35,7 @@ public final class Location{
         return this.state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return this.zipCode;
     }
 }

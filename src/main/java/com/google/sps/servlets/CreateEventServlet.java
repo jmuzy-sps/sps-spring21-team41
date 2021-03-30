@@ -23,12 +23,13 @@ public final class CreateEventServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("event");
+        float price = request.getParameter("price");
+        long date = request.getParameter("date");
         String street = Jsoup.clean(request.getParameter("street"), Whitelist.none()),
             state = Jsoup.clean(request.getParameter("state"), Whitelist.none()),
             type = Jsoup.clean(request.getParameter("type"), Whitelist.none()),
-            details = Jsoup.clean(request.getParameter("details"), Whitelist.none());
-        int zipCode = Integer.parseInt(request.getParameter("zipCode")),
-            price = Integer.parseInt(request.getParameter("price"));
+            details = Jsoup.clean(request.getParameter("details"), Whitelist.none()),
+            zipCode = Integer.parseInt(request.getParameter("zipCode"));
 
         /**
          * TODO (Josh-hdz): posible validations (ex. one event per address)
@@ -37,6 +38,7 @@ public final class CreateEventServlet extends HttpServlet {
         FullEntity taskEntity =
             Entity.newBuilder(keyFactory.newKey())
                 .set("type", type)
+                .set("date", date)
                 .set("details", details)
                 .set("price", price)
                 .set("street", street)

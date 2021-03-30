@@ -11,12 +11,14 @@ public final class Event{
     private String type;
     private String details;
     private float price;
+    private long date           // Epoch format
     public Location address;
 
-    public Event(String type, String details, int price, Location address) {
+    public Event(String type, String details, float price, long date, Location address) {
         setType(type);
         setDetails(details);
         setPrice(price);
+        setDate(date);
         setAddress(address);
     }
 
@@ -28,12 +30,16 @@ public final class Event{
         this.details = details;
     }
 
-    public void setPrice(int price){
+    public void setPrice(float price){
         this.price = price;
     }
 
     public void setAddress(Location address) {
         this.address = address;
+    }
+
+    public void setDate(long date){
+        this.date = date
     }
 
     public String getType() {
@@ -46,5 +52,9 @@ public final class Event{
 
     public float getPrice() {
         return this.price;
+    }
+
+    public long getDate(){
+        return this.date;
     }
 }
