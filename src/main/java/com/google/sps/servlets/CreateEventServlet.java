@@ -23,7 +23,7 @@ public final class CreateEventServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("event");
-        float price = request.getParameter("price");
+        double price = request.getParameter("price");
         long date = request.getParameter("date");
         String street = Jsoup.clean(request.getParameter("street"), Whitelist.none()),
             state = Jsoup.clean(request.getParameter("state"), Whitelist.none()),
