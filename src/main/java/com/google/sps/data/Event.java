@@ -10,13 +10,15 @@ public final class Event{
 
     private String type;
     private String details;
-    private float price;
+    private double price;
+    private long date;           // Epoch format
     public Location address;
 
-    public Event(String type, String details, int price, Location address) {
+    public Event(String type, String details, double price, long date, Location address) {
         setType(type);
         setDetails(details);
         setPrice(price);
+        setDate(date);
         setAddress(address);
     }
 
@@ -28,12 +30,19 @@ public final class Event{
         this.details = details;
     }
 
-    public void setPrice(int price){
+    public void setPrice(double price){
         this.price = price;
     }
 
     public void setAddress(Location address) {
         this.address = address;
+    }
+
+    public void setDate(long date){
+        /**
+         * 'date' is recieved and stored as epoch format (ex. 1617136856)
+         */
+        this.date = date
     }
 
     public String getType() {
@@ -44,7 +53,14 @@ public final class Event{
         return this.details;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return this.price;
+    }
+
+    public long getDate(){
+        /**
+         * 'date' is returned with epoch format (ex. 1617136856)
+         */
+        return this.date;
     }
 }
