@@ -7,3 +7,13 @@ html {
     margin: 0;
     padding: 0;
 }
+.center {
+  padding:10px;
+  text-align: center;
+}
+.currencyinput {
+    border: 1px inset #ccc;
+}
+.currencyinput input {
+    border: 0;
+}
