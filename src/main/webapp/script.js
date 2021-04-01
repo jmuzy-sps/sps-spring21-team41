@@ -14,23 +14,23 @@ async function getMapKey() {
 
 
 /** 
- * Dinamically creates and places needed objets (div, script) to host google map
+ * Dynamically creates and places needed objets (div, script) to host google map
  * 
  * @returns None.
  */
 async function placeMapRequest(apiKey){
     let div = document.createElement('div');
-    let scrpit = document.createElement('script');
+    let script = document.createElement('script');
 
     div.id = 'map'
-    scrpit.type = 'text/javascript';
-    scrpit.src = 
+    script.type = 'text/javascript';
+    script.src = 
         'https://maps.googleapis.com/maps/api/js?key=' +
         apiKey +
         '&callback=initMap';
 
     document.getElementsByTagName('body')[0].appendChild(div);
-    document.getElementsByTagName('head')[0].appendChild(scrpit);
+    document.getElementsByTagName('head')[0].appendChild(script);
     /**
      * TODO: Once the html has more objetcs use document.querySelector
      *       or docuemnt.querySelectorAll to specify div's position in body
@@ -38,7 +38,7 @@ async function placeMapRequest(apiKey){
 }
 
 /** 
- * Creates a map with maerkes and adds it to the page. 
+ * Creates a map with markes and adds it to the page. 
  * 
  * @returns None.
  */
