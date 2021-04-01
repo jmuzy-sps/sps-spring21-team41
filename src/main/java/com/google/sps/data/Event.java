@@ -42,7 +42,7 @@ public final class Event{
         /**
          * 'date' is recieved and stored as epoch format (ex. 1617136856)
          */
-        this.date = date
+        this.date = date;
     }
 
     public String getType() {
