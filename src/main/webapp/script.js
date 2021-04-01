@@ -1,5 +1,10 @@
 // This will be the JavaScript file in which I will create the list elements, post them onto page, etc.
 
+/** 
+ * Fetches google maps api key.
+ * 
+ * @returns None.
+ */
 async function getMapKey() {
     const responseFromServer = await fetch('/google-map-key');
     const apiKey = await responseFromServer.text();
