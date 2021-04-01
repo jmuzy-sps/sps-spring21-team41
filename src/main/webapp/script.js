@@ -25,7 +25,7 @@ async function placeMapRequest(apiKey){
         '&callback=initMap';
 
     document.getElementsByTagName('body')[0].appendChild(div);
-    docuemnt.getElementsByTagName('head')[0].appendChild(scrpit);
+    document.getElementsByTagName('head')[0].appendChild(scrpit);
     /**
      * TODO: Once the html has more objetcs use document.querySelector
      *       or docuemnt.querySelectorAll to specify div's position in body
