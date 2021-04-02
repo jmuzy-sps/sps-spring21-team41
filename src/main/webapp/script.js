@@ -4,7 +4,6 @@ function retrieveEvents () {
   fetch('/retrieve-events').then(response => response.json()).then((events) => {
     const eventsList = document.getElementById('event-list');
     events.forEach((event) => {
-      console.log(comment.message);
       commentElementList.appendChild(createCommentElement(event));
     })
   });
