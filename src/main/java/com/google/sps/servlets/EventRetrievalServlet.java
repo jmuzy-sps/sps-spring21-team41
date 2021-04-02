@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * This Servlet will retrieve events which will eventually be listed on home page.
  */
-@WebServlet("/event-retrieval")
+
+@WebServlet("/retrieve-events")
 public final class EventRetrievalServlet extends HttpServlet {
 
   @Override
