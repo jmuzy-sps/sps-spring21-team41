@@ -28,7 +28,7 @@ public final class EventRetrievalServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     Query<Entity> query =
-    Query.newEntityQueryBuilder().setKind("event").setOrderBy(OrderBy.desc("date")).build();
+        Query.newEntityQueryBuilder().setKind("event").setOrderBy(OrderBy.desc("date")).build();
     QueryResults<Entity> results = datastore.run(query);
 
     List<Event> events = new ArrayList<>();
