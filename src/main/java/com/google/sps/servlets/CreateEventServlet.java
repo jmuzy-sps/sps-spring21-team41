@@ -25,11 +25,11 @@ public final class CreateEventServlet extends HttpServlet {
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("event");
         double price = Double.parseDouble(request.getParameter("price"));
         long date = Long.parseLong(request.getParameter("date"));
-        String street = Jsoup.clean(request.getParameter("street"), Whitelist.none()),
+        String address = Jsoup.clean(request.getParameter("address"), Whitelist.none()),
             state = Jsoup.clean(request.getParameter("state"), Whitelist.none()),
             type = Jsoup.clean(request.getParameter("type"), Whitelist.none()),
-            details = Jsoup.clean(request.getParameter("details"), Whitelist.none()),
-            zipCode = Jsoup.clean(request.getParameter("zipCode"), Whitelist.none());
+            details = Jsoup.clean(request.getParameter("description"), Whitelist.none()),
+            zipCode = Jsoup.clean(request.getParameter("zip"), Whitelist.none());
 
         /**
          * TODO (Josh-hdz): posible validations (ex. one event per address)
@@ -41,12 +41,13 @@ public final class CreateEventServlet extends HttpServlet {
                 .set("date", date)
                 .set("details", details)
                 .set("price", price)
-                .set("street", street)
+                .set("address", address)
                 .set("state", state)
                 .set("zip", zipCode)
                 .build();
         datastore.put(taskEntity);
 
+        response.sendRedirect("/index.html");
         /**
          * TODO (Josh-hdz): add response to let know front-end wether or not the
          *                  event was added to database
