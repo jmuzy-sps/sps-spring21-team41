@@ -31,19 +31,19 @@ public final class EventRetrievalServlet extends HttpServlet {
     Query.newEntityQueryBuilder().setKind("event").setOrderBy(OrderBy.desc("date")).build();
     QueryResults<Entity> results = datastore.run(query);
 
-    List<Comment> events = new ArrayList<>();
+    List<Event> events = new ArrayList<>();
     while (results.hasNext()) {
         Entity entity = results.next();
 
         String type = entity.getString("type");
-            details = entity.getString("details");
-            street = entity.getString("street");
-            state = entity.getString("state");
-            zipcode = entity.getString("zip");
+        String details = entity.getString("details");
+        String street = entity.getString("street");
+        String state = entity.getString("state");
+        String zipCode = entity.getString("zip");
         double price = entity.getDouble("price");
         long date = entity.getLong("date");
 
-        Location address = new Location(stree, state, zipCode);
+        Location address = new Location(street, state, zipCode);
 
         Event event = new Event(type, details, price, date, address);
         events.add(event);
