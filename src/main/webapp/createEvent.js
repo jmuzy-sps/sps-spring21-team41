@@ -25,6 +25,6 @@ function formatInput(){
         price.value += ".00";
     }
     else if(price.value.length > decimalIndex + 3){
-        price.value = price.value.slice(0, price.value.indexOf('.') + 3)
+        price.value = price.value.slice(0, decimalIndex + 3)
     }
 }
