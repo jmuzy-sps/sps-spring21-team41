@@ -11,11 +11,11 @@ public final class Location{
 
     public  Location(String address, String state, String zipCode) {
         setState(state);
-        setaddress(address);
+        setAddress(address);
         setZipCode(zipCode);
     }
 
-    public void setaddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -27,7 +27,7 @@ public final class Location{
         this.zipCode = zipCode;
     }
 
-    public String getaddress() {
+    public String getAddress() {
         return this.address;
     }
 
