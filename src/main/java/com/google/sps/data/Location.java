@@ -5,18 +5,18 @@ package com.google.sps.data;
  */
 public final class Location{
 
-    private String street;
+    private String address;
     private String state;
     private String zipCode;
 
-    public  Location(String street, String state, String zipCode) {
+    public  Location(String address, String state, String zipCode) {
         setState(state);
-        setStreet(street);
+        setaddress(address);
         setZipCode(zipCode);
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setaddress(String address) {
+        this.address = address;
     }
 
     public void setState(String state) {
@@ -27,8 +27,8 @@ public final class Location{
         this.zipCode = zipCode;
     }
 
-    public String getStreet() {
-        return this.street;
+    public String getaddress() {
+        return this.address;
     }
 
     public String getState() {
