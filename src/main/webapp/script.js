@@ -6,8 +6,8 @@
  * @return None.
  */
 function initIndex() {
-    retrieveEvents();
     getMapKey();
+    retrieveEvents();
 }
 
 function retrieveEvents () {
@@ -80,7 +80,7 @@ async function placeMapRequest(apiKey){
  * @returns None.
  */
 function initMap() {
-    let map = new google.maps.Map(
+    map = new google.maps.Map(
         document.getElementById("map"),
         {
             center: {lat: 43.8124565, lng: -91.8264293}, 
@@ -88,4 +88,8 @@ function initMap() {
             mapTypeId: 'terrain'
         }
     );
+}
+
+function CreateMarker(Address) {
+
 }
