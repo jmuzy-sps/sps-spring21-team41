@@ -22,7 +22,7 @@ public final class CreateEventServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        long epoch = 0;     // Hold date's convertion to epoch (value to be stored in Datastore).
+        long epoch;     // Hold date's convertion to epoch (value to be stored in Datastore).
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("event");
         double price = Double.parseDouble(request.getParameter("price"));
