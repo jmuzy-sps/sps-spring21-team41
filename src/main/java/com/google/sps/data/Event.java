@@ -61,7 +61,7 @@ public final class Event{
 
     public String getDate(){
         /*
-         * 'epoch' is returned as a humna readable date string.
+         * 'epoch' is returned as a human readable date string.
          */
         
         return new SimpleDateFormat("EEE, d MMM yyyy HH:mm").format(new Date (epoch*1000));
