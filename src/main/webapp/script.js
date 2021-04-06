@@ -1,4 +1,15 @@
 // This will be the JavaScript file in which I will create the list elements, post them onto page, etc.
+
+/**
+ * calls needed funcitons to setup index.html
+ * 
+ * @return None.
+ */
+function initIndex() {
+    retrieveEvents();
+    getMapKey();
+}
+
 function retrieveEvents () {
   fetch('/retrieve-events').then(response => response.json()).then((events) => {
     const eventsList = document.getElementById('event-list');
@@ -35,7 +46,7 @@ async function getMapKey() {
     const responseFromServer = await fetch('/google-map-key');
     const apiKey = await responseFromServer.text();
 
-    placeMapRequest(apiKey)
+    placeMapRequest(apiKey);
 }
 
 
@@ -48,7 +59,7 @@ async function placeMapRequest(apiKey){
     let div = document.createElement('div');
     let script = document.createElement('script');
 
-    div.id = 'map'
+    div.id = 'map';
     script.type = 'text/javascript';
     script.src = 
         'https://maps.googleapis.com/maps/api/js?key=' +
