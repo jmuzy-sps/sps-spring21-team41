@@ -59,6 +59,10 @@ public final class CreateEventServlet extends HttpServlet {
              */
 
         } catch (java.text.ParseException e) {
+            /**
+             * This catch is unlikey to run since the date formation is done
+             * by html, though it isrequired to compile the servlet.
+             */
             response.sendError(1, "Invalid date format");
         }
     };
