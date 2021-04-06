@@ -90,6 +90,13 @@ function initMap() {
     );
 }
 
+/**
+ * Adds a marker with the address as a label for each event dispayed fetched.
+ * 
+ * @param {String} Address - Event's address (ex. 123 Alameda st.)
+ * 
+ * @return None.
+ *  */
 function CreateMarker(Address) {
 
 }
