@@ -14,24 +14,53 @@ function retrieveEvents () {
   fetch('/retrieve-events').then(response => response.json()).then((events) => {
     const eventsList = document.getElementById('event-list');
     events.forEach((event) => {
-      commentElementList.appendChild(createCommentElement(event));
+        eventsList.appendChild(createEventElement(event));
     })
   });
 }
 
-function createCommentElement(event) {
+function createEventElement(event) {
     const eventElement = document.createElement('div');
     eventElement.className = "card mb-3";
 
     const cardBody = document.createElement('div');
     cardBody.className = "card-body";
 
-    // TODO: This will eventually fill the card with real event 
-    //       information
-    const sampleText = document.createElement('h5');
-    sampleText.innerText = "Testing Event"
+    // Add type of event
+    const eventType = document.createElement('h5');
+    eventType.innerText = event.type;
 
-    cardBody.appendChild(sampleText);
+    // Add address information
+    const address = document.createElement('div');
+    const street = document.createElement('p');
+    street.innerText = event.address.address;
+    const state = document.createElement('p');
+    state.innerText = event.address.state;
+    const zipCode = document.createElement('p');
+    zipCode.innerText = event.address.zipCode;
+    address.appendChild(street);
+    address.appendChild(state);
+    address.appendChild(zipCode);
+
+    // Add event details
+    const details = document.createElement('p');
+    details.innerText = event.details;
+
+    // Create date element
+    const date = document.createElement('p');
+    date.innerText = event.time;
+
+    // Create price element
+    const price = document.createElement('p');
+    price.innerText = event.price;
+
+    // Append everything to card body
+    cardBody.appendChild(eventType);
+    cardBody.appendChild(address);
+    cardBody.appendChild(details);
+    cardBody.appendChild(date);
+    cardBody.appendChild(price);
+    
     eventElement.appendChild(cardBody);
 
     return eventElement;
