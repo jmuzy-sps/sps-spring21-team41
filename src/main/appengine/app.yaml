@@ -1,2 +1,3 @@
 runtime: java11
-includes: ${HOME}/team_41/local/env_variables.yaml
+includes:
+  - /home/jhernandez/team_41/local/env_variables.yaml

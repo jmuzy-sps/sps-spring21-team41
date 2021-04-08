@@ -1,6 +1,8 @@
 package com.google.sps.data;
 
 import com.google.sps.data.Location;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -11,14 +13,14 @@ public final class Event{
     private String type;
     private String details;
     private double price;
-    private long date;           // Epoch format
+    private long epoch;
     public Location address;
 
-    public Event(String type, String details, double price, long date, Location address) {
+    public Event(String type, String details, double price, long epoch, Location address) {
         setType(type);
         setDetails(details);
         setPrice(price);
-        setDate(date);
+        setDate(epoch);
         setAddress(address);
     }
 
@@ -38,11 +40,11 @@ public final class Event{
         this.address = address;
     }
 
-    public void setDate(long date){
+    public void setDate(long epoch){
         /**
          * 'date' is recieved and stored as epoch format (ex. 1617136856)
          */
-        this.date = date;
+        this.epoch = epoch;
     }
 
     public String getType() {
@@ -57,10 +59,11 @@ public final class Event{
         return this.price;
     }
 
-    public long getDate(){
-        /**
-         * 'date' is returned with epoch format (ex. 1617136856)
+    public String getDate(){
+        /*
+         * 'epoch' is returned as a human readable date string.
          */
-        return this.date;
+        
+        return new SimpleDateFormat("EEE, d MMM yyyy HH:mm").format(new Date (epoch*1000));
     }
 }
