@@ -11,3 +11,32 @@ html {
 body #map{
     height: 400px;
 }
+.title {
+  font-family: 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-weight: 900;
+  font-size: 80px;
+}
+
+.container{
+    width:200px;
+    align-content: center;
+}
+
+button {
+  background: cornflowerblue;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Lato';
+  margin: 5px;
+  outline: none;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background: orange;
+}
+
