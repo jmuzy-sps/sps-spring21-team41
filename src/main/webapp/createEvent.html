@@ -24,38 +24,60 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-        </nav>
-
-        <form id='new-event' action="/create-event" method="POST">
-            <h1 class=center>Create Your Event :)!</h1>
-            <div class=row>
-                <div class=column>
-                 <label for="type"> Type </label>
-                 <select name="type">
-                      <option value = "sport">Sports</option>
-                      <option value = "party">Party</option>
-                      <option value = "gathering">Gathering </option>
-                      <option value = "festival">Festival</option>
-                  </select>
-                          
-                  <label for="date">Date</label>
-                  <input  type="datetime-local" value="2021-04-02T13:45:00" id="date" name="date">
-
-                  <label for="address"> Address </label>
-                  <input type="text" name="address" placeholder="Enter valid address"> 
-
-                  <label for="state"> State </label>
-                  <input type="text" name="state" placeholder="Enter valid state" > 
-                        
-                  <label for="zip"> Zip </label>
-                  <input type="number" name="zip" placeholder="Enter valid zip"> 
-
-                  <label for="price"> Price </label>
-                  <span class="currencyinput">$<input type="number" name="price" min="0" step=".01"></span>
-
-                  <label for="description"> Description </label>
-                  <textarea type="text" class="bigmessage" name="description" placeholder="Please describe your event"></textarea>  
-                  <input type="submit"/>
+        </nav> 
+        <form id='new-event' action="/create-event" method="POST" onsubmit="formatInput(); takevalue()">
+            <h1 class="title">Create Your Event</h1>
+            <div class=container>
+                <div class=wrapper>
+                    <div class="form-group">
+                        <label for="type" id="type"> Type </label>
+                        <small id="typeText" class="form-text text-muted">I am planning a...</small>
+                        <select name="type" class="form-control" >
+                            <option selected>Select Event...</option>
+                            <option value = "sportGame">Sports Game</option>
+                            <option value = "sportViewing">Sports Viewing</option>
+                            <option value = "party">Party</option>
+                            <option value = "gathering">Gathering </option>
+                            <option value = "festival">Festival</option>
+                            <option value = "birthday">Birthday</option>
+                            <option value = "babyshower">Babyshower</option>
+                            <option value = "nonProfitEvent">Non-Profit Event</option>
+                            <option value = "virtualEvent">Virtual Event</option>
+                            <option value = "meeting">Meeting</option>
+                            <option value = "fundraiser">Fundraiser</option>
+                            <option value = "studySession">Study Session</option>
+                            <option value = "other">Other</option>
+                        </select>
+                    </div> 
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                         <label for="date">Date</label>
+                         <input class="form-control" type="datetime-local" value="2021-04-02T13:45:00" id="date" name="date">
+                        </div>
+                        <div class="form-group col-md-4">
+                         <label for="price" type="text">Price</label>
+                         <span class="currencyinput">$<input type="number" class="form-control" name="price" min="0" step=".01"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <label for="address">Address</label>
+                         <input type="text" class="form-control" name= "address" id="address" placeholder="1234 Main St">
+                    </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" type="text" name="state" id="state">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="zip">Zip Code</label>
+                                <input type="text" class="form-control" type="text" name="zip id="zip">
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label for="description" >Description</label>
+                        <textarea class="form-control" id="description" name="description" placeholder="describe your event..."rows="3"></textarea>
+                    </div>
+                        <button class="third">Submit</button>
                 </div>
             </div>
         </form>
