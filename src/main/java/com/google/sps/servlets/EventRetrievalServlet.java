@@ -28,7 +28,7 @@ public final class EventRetrievalServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     Query<Entity> query =
-        Query.newEntityQueryBuilder().setKind("event").setOrderBy(OrderBy.desc("date")).build();
+        Query.newEntityQueryBuilder().setKind("event").setOrderBy(OrderBy.desc("epoch")).build();
     QueryResults<Entity> results = datastore.run(query);
 
     List<Event> events = new ArrayList<>();
@@ -36,22 +36,23 @@ public final class EventRetrievalServlet extends HttpServlet {
         Entity entity = results.next();
 
         String type = entity.getString("type");
-        String details = entity.getString("details");
+        String description = entity.getString("description");
         String address = entity.getString("address");
         String state = entity.getString("state");
         String zipCode = entity.getString("zip");
         double price = entity.getDouble("price");
-        long date = entity.getLong("date");
+        long epoch = entity.getLong("epoch");
 
         Location fullAddress = new Location(address, state, zipCode);
 
-        Event event = new Event(type, details, price, date, fullAddress);
+        Event event = new Event(type, description, price, epoch, fullAddress);
         events.add(event);
     }
 
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
+    response.setCharacterEncoding("utf-8");
     response.getWriter().println(gson.toJson(events));
   }
 }

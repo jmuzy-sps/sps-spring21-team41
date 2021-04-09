@@ -1,5 +1,10 @@
 // This will be the JavaScript file in which I will create the list elements, post them onto page, etc.
 
+var map;
+var geocoder;
+var events
+var markersList = [];
+
 /**
  * calls needed funcitons to setup index.html
  * 
@@ -10,13 +15,30 @@ function initIndex() {
     retrieveEvents();
 }
 
-function retrieveEvents () {
-  fetch('/retrieve-events').then(response => response.json()).then((events) => {
-    const eventsList = document.getElementById('event-list');
-    events.forEach((event) => {
-        eventsList.appendChild(createEventElement(event));
-    })
-  });
+async function retrieveEvents () {
+    // Retreives events.
+    await fetch('/retrieve-events').then(response => response.json()).then((events) => {
+        eventsList = document.getElementById('event-list');
+        events.forEach((event) => {
+            eventsList.appendChild(createEventElement(event)); // Appends event info to html
+            
+            geocoder.geocode( //funciton to place marker with transformed address.
+                {'address': event.address.address},
+                function (results, status) {
+                    if(status === "OK") {
+                        markersList.push(new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map,
+                            title: event.address.address
+                        }));
+                    }
+                    else{
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                }
+            )
+        });
+    });
 }
 
 function createEventElement(event) {
@@ -42,13 +64,17 @@ function createEventElement(event) {
     address.appendChild(state);
     address.appendChild(zipCode);
 
-    // Add event details
-    const details = document.createElement('p');
-    details.innerText = event.details;
+    // Add event description
+    const description = document.createElement('p');
+    description.innerText = event.description;
 
     // Create date element
     const date = document.createElement('p');
-    date.innerText = event.time;
+    date.innerText = event.date.slice(0, -5);
+
+    // Create time element
+    const time = document.createElement('p');
+    time.innerText = event.date.slice(-5);
 
     // Create price element
     const price = document.createElement('p');
@@ -57,8 +83,9 @@ function createEventElement(event) {
     // Append everything to card body
     cardBody.appendChild(eventType);
     cardBody.appendChild(address);
-    cardBody.appendChild(details);
+    cardBody.appendChild(description);
     cardBody.appendChild(date);
+    cardBody.appendChild(time);
     cardBody.appendChild(price);
     
     eventElement.appendChild(cardBody);
@@ -117,15 +144,17 @@ function initMap() {
             mapTypeId: 'terrain'
         }
     );
+
+    geocoder = new google.maps.Geocoder();
 }
 
 /**
  * Adds a marker with the address as a label for each event dispayed fetched.
  * 
- * @param {String} Address - Event's address (ex. 123 Alameda st.)
+ * @param {String} address - Event's address (ex. 123 Alameda st.)
  * 
  * @return None.
  *  */
-function CreateMarker(Address) {
-
+function createMarker(results, status) {
+    
 }

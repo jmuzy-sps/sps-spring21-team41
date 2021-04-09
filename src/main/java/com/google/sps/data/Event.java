@@ -11,14 +11,14 @@ import java.text.SimpleDateFormat;
 public final class Event{
 
     private String type;
-    private String details;
+    private String description;
     private double price;
-    private long epoch;
+    private String date;
     public Location address;
 
-    public Event(String type, String details, double price, long epoch, Location address) {
+    public Event(String type, String description, double price, long epoch, Location address) {
         setType(type);
-        setDetails(details);
+        setDescription(description);
         setPrice(price);
         setDate(epoch);
         setAddress(address);
@@ -28,8 +28,8 @@ public final class Event{
         this.type = type;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setPrice(double price){
@@ -41,29 +41,26 @@ public final class Event{
     }
 
     public void setDate(long epoch){
-        /**
-         * 'date' is recieved and stored as epoch format (ex. 1617136856)
+        /*
+         * 'date' is converted to human readable format.
          */
-        this.epoch = epoch;
+        
+        this.date = new SimpleDateFormat("EEE, d MMM yyyy HH:mm").format(new Date (epoch*1000));
     }
 
     public String getType() {
         return this.type;
     }
 
-    public String getDetails() {
-        return this.details;
+    public String getDescription() {
+        return this.description;
     }
 
     public double getPrice() {
         return this.price;
     }
 
-    public String getDate(){
-        /*
-         * 'epoch' is returned as a human readable date string.
-         */
-        
-        return new SimpleDateFormat("EEE, d MMM yyyy HH:mm").format(new Date (epoch*1000));
+    public String getDate() {
+        return this.date;
     }
 }

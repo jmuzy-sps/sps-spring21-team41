@@ -10,7 +10,9 @@ html {
 
 body #map{
     height: 400px;
+    position: fixed;
 }
+
 .title {
   font-family: 'Trebuchet MS', sans-serif;
   text-align: center;
