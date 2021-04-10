@@ -20,9 +20,8 @@ async function retrieveEvents () {
     await fetch('/retrieve-events').then(response => response.json()).then((events) => {
         eventsList = document.getElementById('event-list');
         events.forEach((event) => {
-            eventsList.appendChild(createEventElement(event)); // Appends event info to html
-            
-            geocoder.geocode( //funciton to place marker with transformed address.
+            eventsList.appendChild(createEventElement(event));
+            geocoder.geocode(
                 {'address': event.address.address},
                 function (results, status) {
                     if(status === "OK") {
@@ -36,7 +35,7 @@ async function retrieveEvents () {
                         alert('Geocode was not successful for the following reason: ' + status);
                     }
                 }
-            )
+            );
         });
     });
 }
@@ -89,7 +88,6 @@ function createEventElement(event) {
     cardBody.appendChild(price);
     
     eventElement.appendChild(cardBody);
-
     return eventElement;
 }
 
@@ -111,7 +109,7 @@ async function getMapKey() {
  * 
  * @returns None.
  */
-async function placeMapRequest(apiKey){
+function placeMapRequest(apiKey){
     let div = document.createElement('div');
     let script = document.createElement('script');
 
@@ -155,6 +153,6 @@ function initMap() {
  * 
  * @return None.
  *  */
-function createMarker(results, status) {
+function generateMarker(address) {
     
 }
