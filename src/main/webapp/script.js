@@ -2,8 +2,6 @@
 
 var map;
 var geocoder;
-var events
-var markersList = [];
 
 /**
  * calls needed funcitons to setup index.html
@@ -17,25 +15,26 @@ function initIndex() {
 
 async function retrieveEvents () {
     // Retreives events.
-    await fetch('/retrieve-events').then(response => response.json()).then((events) => {
+    fetch('/retrieve-events').then(response => response.json()).then((events) => {
         eventsList = document.getElementById('event-list');
         events.forEach((event) => {
             eventsList.appendChild(createEventElement(event));
-            geocoder.geocode(
-                {'address': event.address.address},
-                function (results, status) {
-                    if(status === "OK") {
-                        markersList.push(new google.maps.Marker({
-                            position: results[0].geometry.location,
-                            map,
-                            title: event.address.address
-                        }));
+            setTimeout( () => { 
+                geocoder.geocode(  
+                    {'address': event.address.address},
+                    function (results, status) {
+                        if(status === "OK") {
+                            new google.maps.Marker({
+                                position: results[0].geometry.location,
+                                map,
+                                title: event.description
+                            });
+                        }
+                        else{
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
                     }
-                    else{
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                }
-            );
+            ), 1000});
         });
     });
 }
@@ -144,15 +143,4 @@ function initMap() {
     );
 
     geocoder = new google.maps.Geocoder();
-}
-
-/**
- * Adds a marker with the address as a label for each event dispayed fetched.
- * 
- * @param {String} address - Event's address (ex. 123 Alameda st.)
- * 
- * @return None.
- *  */
-function generateMarker(address) {
-    
 }
