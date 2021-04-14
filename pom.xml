@@ -52,6 +52,13 @@
         <artifactId>jsoup</artifactId>
         <version>1.8.3</version>
     </dependency>
+
+    <!-- Maps -->
+    <dependency>
+        <groupId>com.google.maps</groupId>
+        <artifactId>google-maps-services</artifactId>
+        <version>0.18.0</version>
+    </dependency>
   </dependencies>
 
   <build>
