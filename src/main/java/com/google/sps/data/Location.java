@@ -6,21 +6,27 @@ package com.google.sps.data;
 public final class Location{
 
     private String address;
+    private String city;
     private String state;
     private String zipCode;
     private double latitude;
     private double longitude;
 
-    public  Location(String address, String state, String zipCode, double latitude, double longitude) {
+    public  Location(String address, String city, String state, String zipCode, double latitude, double longitude) {
         this.setState(state);
         this.setAddress(address);
         this.setZipCode(zipCode);
         this.setLatitude(latitude);
         this.setLongitude(longitude);
+        this.setCity(city);
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setState(String state) {
@@ -41,6 +47,10 @@ public final class Location{
 
     public String getAddress() {
         return this.address;
+    }
+
+    public String getCity() {
+        return this.city;
     }
 
     public String getState() {
