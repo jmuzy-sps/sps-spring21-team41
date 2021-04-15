@@ -40,3 +40,24 @@ button:hover {
   background: orange;
 }
 
+.card-body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.event-list {
+    margin: 0 auto;
+    width: 75%;
+}
+
+.left {
+    position: relative;
+    width: 50%;
+    top: 0px;
+}
+
+.right {
+    position: relative;
+    width: 50%;
+    top: 0px;
+}
