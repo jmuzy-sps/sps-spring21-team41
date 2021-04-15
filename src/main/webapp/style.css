@@ -51,13 +51,9 @@ button:hover {
 }
 
 .left {
-    position: relative;
     width: 50%;
-    top: 0px;
 }
 
 .right {
-    position: relative;
     width: 50%;
-    top: 0px;
 }
