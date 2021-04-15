@@ -8,11 +8,15 @@ public final class Location{
     private String address;
     private String state;
     private String zipCode;
+    private double latitude;
+    private double longitude;
 
-    public  Location(String address, String state, String zipCode) {
-        setState(state);
-        setAddress(address);
-        setZipCode(zipCode);
+    public  Location(String address, String state, String zipCode, double latitude, double longitude) {
+        this.setState(state);
+        this.setAddress(address);
+        this.setZipCode(zipCode);
+        this.setLatitude(latitude);
+        this.setLongitude(longitude);
     }
 
     public void setAddress(String address) {
@@ -27,6 +31,14 @@ public final class Location{
         this.zipCode = zipCode;
     }
 
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude){
+        this.longitude = longitude;
+    }
+
     public String getAddress() {
         return this.address;
     }
@@ -37,5 +49,13 @@ public final class Location{
 
     public String getZipCode() {
         return this.zipCode;
+    }
+
+    public double getLatitude() {
+        return this.latitude;
+    }
+
+    public double getLongitude() {
+        return this.longitude;
     }
 }
