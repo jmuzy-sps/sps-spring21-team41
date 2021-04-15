@@ -41,6 +41,25 @@ button:hover {
   background: orange;
 }
 
+
+.card-body {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.event-list {
+    margin: 0 auto;
+    width: 75%;
+}
+
+.left {
+    width: 50%;
+}
+
+.right {
+    width: 50%;
+}
+
 .btn-primary {
     color: #fff!important;
     font-weight: 500;
