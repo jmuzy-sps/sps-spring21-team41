@@ -12,16 +12,18 @@ public final class Event{
 
     private String type;
     private String description;
+    private String title;
     private double price;
     private String date;
     public Location address;
 
-    public Event(String type, String description, double price, long epoch, Location address) {
+    public Event(String type, String description, String title, double price, long epoch, Location address) {
         setType(type);
         setDescription(description);
         setPrice(price);
         setDate(epoch);
         setAddress(address);
+        setTitle(title);
     }
 
     public void setType(String type) {
@@ -30,6 +32,10 @@ public final class Event{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setPrice(double price){
@@ -50,6 +56,10 @@ public final class Event{
 
     public String getType() {
         return this.type;
+    }
+
+    public String gettitle() {
+        return this.title;
     }
 
     public String getDescription() {

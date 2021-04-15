@@ -47,7 +47,7 @@ button:hover {
     grid-template-columns: 50% 50%;
 }
 
-.event-list {
+#event-list {
     margin: 0 auto;
     width: 75%;
 }

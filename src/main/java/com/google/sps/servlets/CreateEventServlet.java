@@ -33,6 +33,7 @@ public final class CreateEventServlet extends HttpServlet {
         KeyFactory keyFactory = datastore.newKeyFactory().setKind("event");
         double price = Double.parseDouble(request.getParameter("price"));
         String address = Jsoup.clean(request.getParameter("address"), Whitelist.none()),
+            title = Jsoup.clean(request.getParameter("title"), Whitelist.none()), 
             city = Jsoup.clean(request.getParameter("city"), Whitelist.none()),
             date = Jsoup.clean(request.getParameter("date"), Whitelist.none()),
             state = Jsoup.clean(request.getParameter("state"), Whitelist.none()),
@@ -61,6 +62,7 @@ public final class CreateEventServlet extends HttpServlet {
                     .set("epoch", epoch)
                     .set("description", description)
                     .set("price", price)
+                    .set("title", title)
                     .set("address", address)
                     .set("city", city)
                     .set("state", state)
