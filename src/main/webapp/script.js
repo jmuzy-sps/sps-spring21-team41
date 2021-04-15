@@ -22,7 +22,7 @@ async function retrieveEvents () {
                 new google.maps.Marker({
                 position: {lat: event.address.latitude, lng: event.address.longitude},
                 map,
-                title: event.description
+                title: event.title
             });                    
         });
     });
