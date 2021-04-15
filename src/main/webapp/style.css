@@ -10,7 +10,6 @@ html {
 
 body #map{
     height: 400px;
-    position: fixed;
 }
 
 .title {

@@ -16,7 +16,7 @@ function initIndex() {
 async function retrieveEvents () {
     // Retreives events.
     fetch('/retrieve-events').then(response => response.json()).then((events) => {
-        eventsList = document.getElementById('event-list');
+        const eventsList = document.getElementById('event-list');
         events.forEach((event) => {
             eventsList.appendChild(createEventElement(event));
                 new google.maps.Marker({
