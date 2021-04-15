@@ -1,5 +1,8 @@
 // This will be the JavaScript file in which I will create the list elements, post them onto page, etc.
 
+var map;
+var geocoder;
+
 /**
  * calls needed funcitons to setup index.html
  * 
@@ -10,13 +13,19 @@ function initIndex() {
     retrieveEvents();
 }
 
-function retrieveEvents () {
-  fetch('/retrieve-events').then(response => response.json()).then((events) => {
-    const eventsList = document.getElementById('event-list');
-    events.forEach((event) => {
-        eventsList.appendChild(createEventElement(event));
-    })
-  });
+async function retrieveEvents () {
+    // Retreives events.
+    fetch('/retrieve-events').then(response => response.json()).then((events) => {
+        const eventsList = document.getElementById('event-list');
+        events.forEach((event) => {
+            eventsList.appendChild(createEventElement(event));
+                new google.maps.Marker({
+                position: {lat: event.address.latitude, lng: event.address.longitude},
+                map,
+                title: event.description
+            });                    
+        });
+    });
 }
 
 function createEventElement(event) {
@@ -43,6 +52,7 @@ function createEventElement(event) {
     state.className = "card-text";
     const zipCode = document.createElement('p');
     zipCode.innerText = event.address.zipCode;
+
     zipCode.className = "card-text";
 
     // Create date element
@@ -93,7 +103,6 @@ function createEventElement(event) {
     // Append to eventElement
     eventElement.appendChild(eventType);
     eventElement.appendChild(cardBody);
-
     return eventElement;
 }
 
@@ -115,7 +124,7 @@ async function getMapKey() {
  * 
  * @returns None.
  */
-async function placeMapRequest(apiKey){
+function placeMapRequest(apiKey){
     let div = document.createElement('div');
     let script = document.createElement('script');
 
@@ -148,15 +157,6 @@ function initMap() {
             mapTypeId: 'terrain'
         }
     );
-}
 
-/**
- * Adds a marker with the address as a label for each event dispayed fetched.
- * 
- * @param {String} Address - Event's address (ex. 123 Alameda st.)
- * 
- * @return None.
- *  */
-function CreateMarker(Address) {
-
+    geocoder = new google.maps.Geocoder();
 }
