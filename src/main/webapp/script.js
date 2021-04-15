@@ -19,22 +19,11 @@ async function retrieveEvents () {
         eventsList = document.getElementById('event-list');
         events.forEach((event) => {
             eventsList.appendChild(createEventElement(event));
-            setTimeout( () => { 
-                geocoder.geocode(  
-                    {'address': event.address.address},
-                    function (results, status) {
-                        if(status === "OK") {
-                            new google.maps.Marker({
-                                position: results[0].geometry.location,
-                                map,
-                                title: event.description
-                            });
-                        }
-                        else{
-                            alert('Geocode was not successful for the following reason: ' + status);
-                        }
-                    }
-            ), 1000});
+                new google.maps.Marker({
+                position: {lat: event.address.latitude, lng: event.address.longitude},
+                map,
+                title: event.description
+            });                    
         });
     });
 }

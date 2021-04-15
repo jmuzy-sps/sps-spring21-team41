@@ -3,9 +3,9 @@ package com.google.sps.servlets;
 import com.google.cloud.datastore.Datastore;
 import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
+import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.cloud.datastore.Query;
 import com.google.cloud.datastore.QueryResults;
-import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import com.google.gson.Gson;
 import com.google.sps.data.Event;
 import com.google.sps.data.Location;
@@ -40,10 +40,12 @@ public final class EventRetrievalServlet extends HttpServlet {
         String address = entity.getString("address");
         String state = entity.getString("state");
         String zipCode = entity.getString("zip");
+        double latitude = entity.getDouble("latitude");
+        double longitude = entity.getDouble("longitude");
         double price = entity.getDouble("price");
         long epoch = entity.getLong("epoch");
 
-        Location fullAddress = new Location(address, state, zipCode);
+        Location fullAddress = new Location(address, state, zipCode, latitude, longitude);
 
         Event event = new Event(type, description, price, epoch, fullAddress);
         events.add(event);
