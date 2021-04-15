@@ -108,7 +108,10 @@ function placeMapRequest(apiKey){
         apiKey +
         '&callback=initMap';
 
-    document.getElementsByTagName('body')[0].appendChild(div);
+    document.getElementsByTagName('body')[0].insertBefore(
+        div,
+        document.getElementsByTagName("nav").nextSibling
+    );
     document.getElementsByTagName('head')[0].appendChild(script);
     /**
      * TODO: Once the html has more objetcs use document.querySelector
@@ -122,6 +125,8 @@ function placeMapRequest(apiKey){
  * @returns None.
  */
 function initMap() {
+    const mapContainer = document.getElementById("map");
+
     map = new google.maps.Map(
         document.getElementById("map"),
         {
@@ -130,6 +135,6 @@ function initMap() {
             mapTypeId: 'terrain'
         }
     );
-
+    
     geocoder = new google.maps.Geocoder();
 }
