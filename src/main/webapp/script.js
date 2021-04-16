@@ -22,7 +22,7 @@ async function retrieveEvents () {
                 new google.maps.Marker({
                 position: {lat: event.address.latitude, lng: event.address.longitude},
                 map,
-                title: event.description
+                title: event.title
             });                    
         });
     });
@@ -33,9 +33,9 @@ function createEventElement(event) {
     eventElement.className = "card mb-3";
 
     // Add type of event
-    const eventType = document.createElement('h5');
-    eventType.className = "card-header";
-    eventType.innerText = event.type;
+    const eventTitle = document.createElement('h5');
+    eventTitle.className = "card-header";
+    eventTitle.innerText = event.title + ' (' + event.type + ')';
 
     // Create card body
     const cardBody = document.createElement('div');
@@ -46,7 +46,7 @@ function createEventElement(event) {
     labelAddress.innerText = "Location:";
     const streetAddress = document.createElement('p');
     streetAddress.innerText = event.address.address + ', ' + event.address.city;
-    street.className = "card-text";
+    streetAddress.className = "card-text";
     const state = document.createElement('p');
     state.innerText = event.address.state;
     state.className = "card-text";
@@ -59,7 +59,7 @@ function createEventElement(event) {
     const dateLabel = document.createElement('b');
     dateLabel.innerText = "Date and time:";
     const date = document.createElement('p');
-    date.innerText = event.time;
+    date.innerText = event.date;
     date.className = "card-text";
 
 
@@ -67,7 +67,7 @@ function createEventElement(event) {
     const leftSide = document.createElement('div');
     leftSide.className = "left";
     leftSide.appendChild(labelAddress);
-    leftSide.appendChild(street);
+    leftSide.appendChild(streetAddress);
     leftSide.appendChild(state);
     leftSide.appendChild(zipCode);
     leftSide.appendChild(dateLabel);
@@ -85,7 +85,7 @@ function createEventElement(event) {
     const priceLabel = document.createElement('b');
     priceLabel.innerText = "Price:";
     const price = document.createElement('p');
-    price.innerText = event.price;
+    price.innerText = '$' + event.price;
     price.className = "card-text";
 
     // Create right side of card
@@ -97,11 +97,11 @@ function createEventElement(event) {
     rightSide.appendChild(price);
 
     // Append everything to card body
-    cardBody.appendChild(left);
-    cardBody.appendChild(right);
+    cardBody.appendChild(leftSide);
+    cardBody.appendChild(rightSide);
     
     // Append to eventElement
-    eventElement.appendChild(eventType);
+    eventElement.appendChild(eventTitle);
     eventElement.appendChild(cardBody);
     return eventElement;
 }
@@ -135,7 +135,10 @@ function placeMapRequest(apiKey){
         apiKey +
         '&callback=initMap';
 
-    document.getElementsByTagName('body')[0].appendChild(div);
+    document.getElementsByTagName('body')[0].insertBefore(
+        div,
+        document.getElementById("event-list")
+    );
     document.getElementsByTagName('head')[0].appendChild(script);
     /**
      * TODO: Once the html has more objetcs use document.querySelector
@@ -149,6 +152,8 @@ function placeMapRequest(apiKey){
  * @returns None.
  */
 function initMap() {
+    const mapContainer = document.getElementById("map");
+
     map = new google.maps.Map(
         document.getElementById("map"),
         {
@@ -157,6 +162,6 @@ function initMap() {
             mapTypeId: 'terrain'
         }
     );
-
+    
     geocoder = new google.maps.Geocoder();
 }

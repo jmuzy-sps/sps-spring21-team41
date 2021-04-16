@@ -37,6 +37,7 @@ public final class EventRetrievalServlet extends HttpServlet {
 
         String type = entity.getString("type");
         String description = entity.getString("description");
+        String title = entity.getString("title");
         String address = entity.getString("address");
         String city = entity.getString("city");
         String state = entity.getString("state");
@@ -48,7 +49,7 @@ public final class EventRetrievalServlet extends HttpServlet {
 
         Location fullAddress = new Location(address, city, state, zipCode, latitude, longitude);
 
-        Event event = new Event(type, description, price, epoch, fullAddress);
+        Event event = new Event(type, description, title, price, epoch, fullAddress);
         events.add(event);
     }
 
