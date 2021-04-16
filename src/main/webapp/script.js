@@ -22,7 +22,7 @@ async function retrieveEvents () {
                 new google.maps.Marker({
                 position: {lat: event.address.latitude, lng: event.address.longitude},
                 map,
-                title: event.description
+                title: event.title
             });                    
         });
     });
@@ -32,49 +32,76 @@ function createEventElement(event) {
     const eventElement = document.createElement('div');
     eventElement.className = "card mb-3";
 
+    // Add type of event
+    const eventTitle = document.createElement('h5');
+    eventTitle.className = "card-header";
+    eventTitle.innerText = event.title + ' (' + event.type + ')';
+
+    // Create card body
     const cardBody = document.createElement('div');
     cardBody.className = "card-body";
 
-    // Add type of event
-    const eventType = document.createElement('h5');
-    eventType.innerText = event.type;
-
     // Add address information
-    const address = document.createElement('div');
-    const street = document.createElement('p');
-    street.innerText = event.address.address;
+    const labelAddress = document.createElement('b');
+    labelAddress.innerText = "Location:";
+    const streetAddress = document.createElement('p');
+    streetAddress.innerText = event.address.address + ', ' + event.address.city;
+    streetAddress.className = "card-text";
     const state = document.createElement('p');
     state.innerText = event.address.state;
+    state.className = "card-text";
     const zipCode = document.createElement('p');
     zipCode.innerText = event.address.zipCode;
-    address.appendChild(street);
-    address.appendChild(state);
-    address.appendChild(zipCode);
 
-    // Add event description
-    const description = document.createElement('p');
-    description.innerText = event.description;
+    zipCode.className = "card-text";
 
     // Create date element
+    const dateLabel = document.createElement('b');
+    dateLabel.innerText = "Date and time:";
     const date = document.createElement('p');
-    date.innerText = event.date.slice(0, -5);
+    date.innerText = event.date;
+    date.className = "card-text";
 
-    // Create time element
-    const time = document.createElement('p');
-    time.innerText = event.date.slice(-5);
+
+    // Create left side of card
+    const leftSide = document.createElement('div');
+    leftSide.className = "left";
+    leftSide.appendChild(labelAddress);
+    leftSide.appendChild(streetAddress);
+    leftSide.appendChild(state);
+    leftSide.appendChild(zipCode);
+    leftSide.appendChild(dateLabel);
+    leftSide.appendChild(date);
+
+
+    // Add event description
+    const descriptionLabel = document.createElement('b');
+    descriptionLabel.innerText = "Description:";
+    const description = document.createElement('p');
+    description.innerText = event.description;
+    description.className = "card-text";
 
     // Create price element
+    const priceLabel = document.createElement('b');
+    priceLabel.innerText = "Price:";
     const price = document.createElement('p');
-    price.innerText = event.price;
+    price.innerText = '$' + event.price;
+    price.className = "card-text";
+
+    // Create right side of card
+    const rightSide = document.createElement('div');
+    rightSide.className = "right";
+    rightSide.appendChild(descriptionLabel);
+    rightSide.appendChild(description);
+    rightSide.appendChild(priceLabel);
+    rightSide.appendChild(price);
 
     // Append everything to card body
-    cardBody.appendChild(eventType);
-    cardBody.appendChild(address);
-    cardBody.appendChild(description);
-    cardBody.appendChild(date);
-    cardBody.appendChild(time);
-    cardBody.appendChild(price);
+    cardBody.appendChild(leftSide);
+    cardBody.appendChild(rightSide);
     
+    // Append to eventElement
+    eventElement.appendChild(eventTitle);
     eventElement.appendChild(cardBody);
     return eventElement;
 }
@@ -108,7 +135,10 @@ function placeMapRequest(apiKey){
         apiKey +
         '&callback=initMap';
 
-    document.getElementsByTagName('body')[0].appendChild(div);
+    document.getElementsByTagName('body')[0].insertBefore(
+        div,
+        document.getElementById("event-list")
+    );
     document.getElementsByTagName('head')[0].appendChild(script);
     /**
      * TODO: Once the html has more objetcs use document.querySelector
@@ -122,6 +152,8 @@ function placeMapRequest(apiKey){
  * @returns None.
  */
 function initMap() {
+    const mapContainer = document.getElementById("map");
+
     map = new google.maps.Map(
         document.getElementById("map"),
         {
@@ -130,6 +162,6 @@ function initMap() {
             mapTypeId: 'terrain'
         }
     );
-
+    
     geocoder = new google.maps.Geocoder();
 }
